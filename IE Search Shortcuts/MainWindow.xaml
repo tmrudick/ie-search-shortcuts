@@ -11,9 +11,9 @@
                 <DataTemplate>
                     <DockPanel>
                         <StackPanel Orientation="Horizontal">
-                            <TextBox Height="23" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="120" Text="{Binding Name, Mode=TwoWay}" />
-                            <TextBox Height="23" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="120" Text="{Binding Keyword, Mode=TwoWay}" />
-                            <TextBox Height="23" HorizontalAlignment="Left" Margin="10,10,10,0" VerticalAlignment="Top" Width="120" Text="{Binding URL, Mode=TwoWay}" />
+                            <TextBox Height="23" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="120" Text="{Binding Name, Mode=TwoWay}" LostFocus="TextBox_LostFocus" />
+                            <TextBox Height="23" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="120" Text="{Binding Keyword, Mode=TwoWay}" LostFocus="TextBox_LostFocus" />
+                            <TextBox Height="23" HorizontalAlignment="Left" Margin="10,10,10,0" VerticalAlignment="Top" Width="120" Text="{Binding URL, Mode=TwoWay}" LostFocus="TextBox_LostFocus" />
                             <Button Content="X" Click="Button_Click" />
                         </StackPanel>
                     </DockPanel>

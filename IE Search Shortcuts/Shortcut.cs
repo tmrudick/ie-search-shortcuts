@@ -14,20 +14,18 @@ namespace IESearchShortcuts
         public string Name { get; set; }
         public string Keyword { get; set; }
         public string URL { get; set; }
-
-        private bool isNew;
+        private string CurrentKeyword; // If the shortcut is not new, this is the existing key
 
         Shortcut(string name, string keyword, string url)
         {
-            this.isNew = false;
             this.Name = name;
             this.Keyword = keyword;
             this.URL = url;
+            this.CurrentKeyword = keyword;
         }
 
         public Shortcut()
         {
-            this.isNew = true;
         }
 
         public bool Save()
@@ -35,15 +33,39 @@ namespace IESearchShortcuts
             RegistryKey regKey = Registry.CurrentUser.CreateSubKey(SEARCH_URL_KEY + "\\" + this.Keyword);
             regKey.SetValue("", this.URL);
             regKey.SetValue("ShortcutName", this.Name);
+            this.CurrentKeyword = this.Keyword;
 
             return true;
         }
 
         public bool Delete()
         {
-            Registry.CurrentUser.OpenSubKey(SEARCH_URL_KEY, true).DeleteSubKey(this.Keyword);
+            if (this.CurrentKeyword != null)
+            {
+                Registry.CurrentUser.OpenSubKey(SEARCH_URL_KEY, true).DeleteSubKey(this.CurrentKeyword);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
-            return true;
+        public bool Update()
+        {
+            if (this.CurrentKeyword != null)
+            {
+                this.Delete(); // Delete the old record
+                this.CurrentKeyword = this.Keyword;
+
+                this.Save();
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public static ObservableCollection<Shortcut> LoadShortcuts() {
@@ -57,11 +79,10 @@ namespace IESearchShortcuts
             {
                 RegistryKey regKey = Registry.CurrentUser.OpenSubKey(SEARCH_URL_KEY + "\\" + key);
 
-                Shortcut shortcut = new Shortcut() {
-                    Name = regKey.GetValue("ShortcutName") == null ? "" : regKey.GetValue("ShortcutName").ToString(),
-                    Keyword = key,
-                    URL = regKey.GetValue("").ToString()
-                };
+                Shortcut shortcut = new Shortcut(
+                    regKey.GetValue("ShortcutName") == null ? "" : regKey.GetValue("ShortcutName").ToString(),
+                    key,
+                    regKey.GetValue("").ToString());
                 
                 shortcuts.Add(shortcut);
             }

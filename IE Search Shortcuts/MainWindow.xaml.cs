@@ -150,5 +150,14 @@ namespace IESearchShortcuts
             shortcuts.Remove(s);
             s.Delete();
         }
+
+        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox box = (TextBox)sender;
+
+            Shortcut s = (Shortcut)box.DataContext;
+
+            s.Update();
+        }
     }
 }
