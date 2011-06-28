@@ -5,7 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Windows;
 
-namespace IE_Search_Shortcuts
+namespace IESearchShortcuts
 {
     /// <summary>
     /// Interaction logic for App.xaml

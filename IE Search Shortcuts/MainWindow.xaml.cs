@@ -13,7 +13,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 
-namespace IE_Search_Shortcuts
+namespace IESearchShortcuts
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

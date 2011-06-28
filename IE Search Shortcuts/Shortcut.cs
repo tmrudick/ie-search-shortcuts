@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace IE_Search_Shortcuts
+namespace IESearchShortcuts
 {
     class Shortcut
     {
