@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Collections.ObjectModel;
 
 namespace IE_Search_Shortcuts
 {
@@ -20,6 +21,7 @@ namespace IE_Search_Shortcuts
     public partial class MainWindow : Window
     {
         private bool nameChanged, keywordChanged, urlChanged;
+        private ObservableCollection<Shortcut> shortcuts;
 
         public MainWindow()
         {
@@ -85,12 +87,45 @@ namespace IE_Search_Shortcuts
 
         private void AddShortcut()
         {
-            
+            // Create new shortcut
+            Shortcut shortcut = new Shortcut();
+            shortcut.Name = nameTxtBox.Text;
+            shortcut.Keyword = keywordTxtBox.Text;
+            shortcut.URL = urlTxtBox.Text;
+
+            // TODO: Add shortcut to registry
+
+            shortcuts.Add(shortcut);
+            ResetFields();
         }
 
         private void addBtn_Click(object sender, RoutedEventArgs e)
         {
             AddShortcut();
+            shortcutListBox.Focus();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            shortcuts = new ObservableCollection<Shortcut>();
+            Shortcut s = new Shortcut()
+            {
+                Name = "Tom"
+            };
+            shortcuts.Add(s);
+
+            shortcutListBox.DataContext = shortcuts;
+        }
+
+        private void ResetFields()
+        {
+            nameTxtBox.Text = "Add New Shortcut";
+            nameChanged = false;
+            keywordTxtBox.Text = "Keyword";
+            keywordChanged = false;
+            urlTxtBox.Text = "URL with %s in place of query";
+            urlChanged = false;
+
             shortcutListBox.Focus();
         }
     }
