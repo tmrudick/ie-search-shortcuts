@@ -91,7 +91,7 @@ namespace IESearchShortcuts
             }
         }
 
-        private void AddShortcut()
+        private Shortcut AddShortcut()
         {
             // Create new shortcut
             Shortcut shortcut = new Shortcut()
@@ -105,6 +105,10 @@ namespace IESearchShortcuts
 
             shortcuts.Add(shortcut);
             ResetFields();
+
+            shortcut.Save();
+
+            return shortcut;
         }
 
         private void addBtn_Click(object sender, RoutedEventArgs e)
@@ -115,7 +119,7 @@ namespace IESearchShortcuts
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            shortcuts = new ObservableCollection<Shortcut>();
+            shortcuts = Shortcut.LoadShortcuts();
 
             shortcutListBox.DataContext = shortcuts;
         }
@@ -144,6 +148,7 @@ namespace IESearchShortcuts
             Shortcut s = (Shortcut)b.DataContext;
 
             shortcuts.Remove(s);
+            s.Delete();
         }
     }
 }
