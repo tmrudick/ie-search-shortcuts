@@ -33,6 +33,7 @@ namespace IE_Search_Shortcuts
             if (nameChanged == false)
             {
                 nameTxtBox.Text = "";
+                nameTxtBox.Foreground = SystemColors.ActiveCaptionTextBrush;
             }
         }
 
@@ -41,6 +42,7 @@ namespace IE_Search_Shortcuts
             if (keywordChanged == false)
             {
                 keywordTxtBox.Text = "";
+                keywordTxtBox.Foreground = SystemColors.ActiveCaptionTextBrush;
             }
         }
 
@@ -49,6 +51,7 @@ namespace IE_Search_Shortcuts
             if (urlChanged == false)
             {
                 urlTxtBox.Text = "";
+                urlTxtBox.Foreground = SystemColors.ActiveCaptionTextBrush;
             }
         }
 
@@ -58,6 +61,10 @@ namespace IE_Search_Shortcuts
             {
                 nameChanged = true;
             }
+            else
+            {
+                nameTxtBox.Foreground = SystemColors.InactiveCaptionBrush;
+            }
         }
 
         private void keywordTxtBox_LostFocus(object sender, RoutedEventArgs e)
@@ -65,6 +72,10 @@ namespace IE_Search_Shortcuts
             if (keywordTxtBox.Text != "")
             {
                 keywordChanged = true;
+            }
+            else
+            {
+                keywordTxtBox.Foreground = SystemColors.InactiveCaptionBrush; 
             }
         }
 
@@ -74,24 +85,21 @@ namespace IE_Search_Shortcuts
             {
                 urlChanged = true;
             }
-        }
-
-        private void urlTxtBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Tab)
+            else
             {
-                AddShortcut();
-                shortcutListBox.Focus();
+                urlTxtBox.Foreground = SystemColors.InactiveCaptionBrush;
             }
         }
 
         private void AddShortcut()
         {
             // Create new shortcut
-            Shortcut shortcut = new Shortcut();
-            shortcut.Name = nameTxtBox.Text;
-            shortcut.Keyword = keywordTxtBox.Text;
-            shortcut.URL = urlTxtBox.Text;
+            Shortcut shortcut = new Shortcut()
+            {
+                Name = nameTxtBox.Text,
+                Keyword = keywordTxtBox.Text,
+                URL = urlTxtBox.Text
+            };
 
             // TODO: Add shortcut to registry
 
@@ -108,11 +116,6 @@ namespace IE_Search_Shortcuts
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             shortcuts = new ObservableCollection<Shortcut>();
-            Shortcut s = new Shortcut()
-            {
-                Name = "Tom"
-            };
-            shortcuts.Add(s);
 
             shortcutListBox.DataContext = shortcuts;
         }
@@ -125,6 +128,11 @@ namespace IE_Search_Shortcuts
             keywordChanged = false;
             urlTxtBox.Text = "URL with %s in place of query";
             urlChanged = false;
+
+            // Change brushes
+            nameTxtBox.Foreground = SystemColors.InactiveCaptionBrush;
+            keywordTxtBox.Foreground = SystemColors.InactiveCaptionBrush;
+            urlTxtBox.Foreground = SystemColors.InactiveCaptionBrush; 
 
             shortcutListBox.Focus();
         }
