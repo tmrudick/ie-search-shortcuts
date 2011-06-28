@@ -136,5 +136,14 @@ namespace IESearchShortcuts
 
             shortcutListBox.Focus();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Button b = (Button)sender;
+
+            Shortcut s = (Shortcut)b.DataContext;
+
+            shortcuts.Remove(s);
+        }
     }
 }
