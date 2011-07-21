@@ -159,5 +159,15 @@ namespace IESearchShortcuts
 
             s.Update();
         }
+
+        private void DockPanel_MouseEnter(object sender, MouseEventArgs e)
+        {
+            DockPanel dp = (DockPanel)sender;
+
+            foreach (UIElement ele in dp.Children)
+            {
+                
+            }
+        }
     }
 }
