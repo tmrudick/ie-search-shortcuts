@@ -64,6 +64,7 @@ namespace IESearchShortcuts
             else
             {
                 nameTxtBox.Foreground = SystemColors.InactiveCaptionBrush;
+                nameTxtBox.Text = "Add New Shortcut";
             }
         }
 
@@ -75,7 +76,8 @@ namespace IESearchShortcuts
             }
             else
             {
-                keywordTxtBox.Foreground = SystemColors.InactiveCaptionBrush; 
+                keywordTxtBox.Foreground = SystemColors.InactiveCaptionBrush;
+                keywordTxtBox.Text = "Keyword";
             }
         }
 
@@ -88,6 +90,7 @@ namespace IESearchShortcuts
             else
             {
                 urlTxtBox.Foreground = SystemColors.InactiveCaptionBrush;
+                urlTxtBox.Text = "URL with %s in place of query";
             }
         }
 
@@ -187,6 +190,20 @@ namespace IESearchShortcuts
         private void ListItem_MouseLeave(object sender, MouseEventArgs e)
         {
             ToggleDeleteBtn(sender as StackPanel, System.Windows.Visibility.Hidden);
+        }
+
+        private void urlTxtBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Tab || e.Key == Key.Enter)
+            {
+                AddShortcut();
+
+                // Stop tab
+                e.Handled = true;
+
+                nameTxtBox.Focus();
+                urlChanged = false;
+            }
         }
     }
 }
