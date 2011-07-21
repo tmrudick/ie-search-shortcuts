@@ -25,7 +25,8 @@ namespace IESearchShortcuts
                 }
                 catch (UriFormatException e)
                 {
-                    return "";
+                    return "pack://application:,,,/IE%20Search%20Shortcuts;component/images/globe.png";
+
                 }
             }
         }
