@@ -47,6 +47,12 @@ namespace IESearchShortcuts
         public bool Save()
         {
             RegistryKey regKey = Registry.CurrentUser.CreateSubKey(SEARCH_URL_KEY + "\\" + this.Keyword);
+
+            if (regKey.GetValue("") != null)
+            {
+                return false;
+            }
+
             regKey.SetValue("", this.URL);
             regKey.SetValue("ShortcutName", this.Name);
             this.CurrentKeyword = this.Keyword;

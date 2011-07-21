@@ -104,12 +104,16 @@ namespace IESearchShortcuts
                 URL = urlTxtBox.Text
             };
 
-            // TODO: Add shortcut to registry
-
-            shortcuts.Add(shortcut);
-            ResetFields();
-
-            shortcut.Save();
+            // Save the shortcut to the registry
+            if (shortcut.Save())
+            {
+                shortcuts.Add(shortcut);
+                ResetFields();
+            }
+            else
+            {
+                MessageBox.Show("Error Creating Shortcut", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
 
             return shortcut;
         }
