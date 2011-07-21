@@ -2,9 +2,18 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="IE Search Shortcuts" Height="606" Width="572" Loaded="Window_Loaded">
+    
+    <Window.Resources>
+        <Style x:Key="NoSelectionListBox">
+            <Style.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="White" />
+            </Style.Resources>
+        </Style>
+    </Window.Resources>
+
     <ScrollViewer>
         <StackPanel Width="536" Height="Auto">
-            <ListBox HorizontalAlignment="Left" Margin="0,10,0,0" Name="shortcutListBox" VerticalAlignment="Top" Width="536" ItemsSource="{Binding}" BorderThickness="0">
+            <ListBox Style="{StaticResource NoSelectionListBox}" HorizontalAlignment="Left" Margin="0,10,0,0" Name="shortcutListBox" VerticalAlignment="Top" Width="536" ItemsSource="{Binding}" BorderThickness="0">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                             <StackPanel Orientation="Horizontal" MouseEnter="ListItem_MouseEnter" MouseLeave="ListItem_MouseLeave" Background="White">
