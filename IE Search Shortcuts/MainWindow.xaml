@@ -7,15 +7,15 @@
             <ListBox HorizontalAlignment="Left" Margin="0,10,0,0" Name="shortcutListBox" VerticalAlignment="Top" Width="536" ItemsSource="{Binding}" BorderThickness="0">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <DockPanel MouseEnter="DockPanel_MouseEnter">
-                            <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Horizontal" MouseEnter="ListItem_MouseEnter" MouseLeave="ListItem_MouseLeave" Background="White">
                                 <Image Height="23" HorizontalAlignment="Left" Margin="4,5,0,5" Stretch="Fill" VerticalAlignment="Top" Width="23" Source="{Binding Icon}" ImageFailed="Icon_Failed" />
                                 <TextBox Height="23" HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Top" Width="126" Text="{Binding Name, Mode=TwoWay}" LostFocus="TextBox_LostFocus" />
                                 <TextBox Height="23" HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Top" Width="110" Text="{Binding Keyword, Mode=TwoWay}" LostFocus="TextBox_LostFocus" />
-                                <TextBox Height="23" HorizontalAlignment="Left" Margin="5,5,10,5" VerticalAlignment="Top" Width="207" Text="{Binding URL, Mode=TwoWay}" LostFocus="TextBox_LostFocus" />
-                                <Button Content="X" Click="Button_Click" />
+                                <TextBox Height="23" HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Top" Width="207" Text="{Binding URL, Mode=TwoWay}" LostFocus="TextBox_LostFocus" />
+                                <Button Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" Width="27" Margin="5,5,0,0" Background="{x:Null}" BorderBrush="{x:Null}" Visibility="Hidden" Click="DeleteBtn_Click">
+                                    <Image Source="/IE%20Search%20Shortcuts;component/images/delete.png" />
+                                </Button>
                             </StackPanel>
-                        </DockPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
@@ -24,7 +24,9 @@
                 <TextBox Height="23" HorizontalAlignment="Left" Name="nameTxtBox" VerticalAlignment="Top" Width="126" Text="Add New Shortcut" GotFocus="nameTxtBox_GotFocus" LostFocus="nameTxtBox_LostFocus" Foreground="{StaticResource {x:Static SystemColors.InactiveCaptionBrushKey}}" Margin="5,0,0,0" />
                 <TextBox Height="23" HorizontalAlignment="Right" Name="keywordTxtBox" VerticalAlignment="Top" Width="110" Text="Keyword" Foreground="{StaticResource {x:Static SystemColors.InactiveCaptionBrushKey}}" GotFocus="keywordTxtBox_GotFocus" LostFocus="keywordTxtBox_LostFocus" Margin="5,0,0,0" />
                 <TextBox Height="23" HorizontalAlignment="Right" Name="urlTxtBox" VerticalAlignment="Top" Width="207" Text="URL with %s in place of query" Foreground="{StaticResource {x:Static SystemColors.InactiveCaptionBrushKey}}" GotFocus="urlTxtBox_GotFocus" LostFocus="urlTxtBox_LostFocus" Margin="5,0,0,0" />
-                <Button Content="+" Height="23" HorizontalAlignment="Left" Name="addBtn" VerticalAlignment="Top" Width="27" Click="addBtn_Click" Margin="5,0,0,0" />
+                <Button Height="23" HorizontalAlignment="Left" Name="addBtn" VerticalAlignment="Top" Width="27" Click="addBtn_Click" Margin="5,0,0,0" Background="{x:Null}" BorderBrush="{x:Null}">
+                    <Image Source="/IE%20Search%20Shortcuts;component/images/add.png" />
+                </Button>
             </StackPanel>
         </StackPanel>
     </ScrollViewer>

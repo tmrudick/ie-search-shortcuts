@@ -141,7 +141,7 @@ namespace IESearchShortcuts
             shortcutListBox.Focus();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
             Button b = (Button)sender;
 
@@ -160,19 +160,33 @@ namespace IESearchShortcuts
             s.Update();
         }
 
-        private void DockPanel_MouseEnter(object sender, MouseEventArgs e)
+        private void ListItem_MouseEnter(object sender, MouseEventArgs e)
         {
-            DockPanel dp = (DockPanel)sender;
+            ToggleDeleteBtn(sender as StackPanel, Visibility.Visible);
+        }
 
-            foreach (UIElement ele in dp.Children)
+        private bool ToggleDeleteBtn(StackPanel panel, Visibility visibility)
+        {
+            foreach (UIElement ele in panel.Children)
             {
-                
+                if (ele.GetType() == typeof(Button))
+                {
+                    ele.Visibility = visibility;
+                    return true;
+                }
             }
+
+            return false;
         }
 
         private void Icon_Failed(object sender, ExceptionRoutedEventArgs e)
         {
             ((Image)sender).Source = new BitmapImage(new Uri("pack://application:,,,/IE%20Search%20Shortcuts;component/images/globe.png"));
+        }
+
+        private void ListItem_MouseLeave(object sender, MouseEventArgs e)
+        {
+            ToggleDeleteBtn(sender as StackPanel, System.Windows.Visibility.Hidden);
         }
     }
 }
