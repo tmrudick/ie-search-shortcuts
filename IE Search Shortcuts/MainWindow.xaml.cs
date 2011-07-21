@@ -169,5 +169,10 @@ namespace IESearchShortcuts
                 
             }
         }
+
+        private void Icon_Failed(object sender, ExceptionRoutedEventArgs e)
+        {
+            ((Image)sender).Source = new BitmapImage(new Uri("pack://application:,,,/IE%20Search%20Shortcuts;component/images/globe.png"));
+        }
     }
 }

@@ -9,7 +9,7 @@
                     <DataTemplate>
                         <DockPanel MouseEnter="DockPanel_MouseEnter">
                             <StackPanel Orientation="Horizontal">
-                                <Image Height="23" HorizontalAlignment="Left" Margin="4,5,0,5" Stretch="Fill" VerticalAlignment="Top" Width="23" Source="/IE%20Search%20Shortcuts;component/images/globe.png" />
+                                <Image Height="23" HorizontalAlignment="Left" Margin="4,5,0,5" Stretch="Fill" VerticalAlignment="Top" Width="23" Source="{Binding Icon}" ImageFailed="Icon_Failed" />
                                 <TextBox Height="23" HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Top" Width="126" Text="{Binding Name, Mode=TwoWay}" LostFocus="TextBox_LostFocus" />
                                 <TextBox Height="23" HorizontalAlignment="Left" Margin="5,5,0,5" VerticalAlignment="Top" Width="110" Text="{Binding Keyword, Mode=TwoWay}" LostFocus="TextBox_LostFocus" />
                                 <TextBox Height="23" HorizontalAlignment="Left" Margin="5,5,10,5" VerticalAlignment="Top" Width="207" Text="{Binding URL, Mode=TwoWay}" LostFocus="TextBox_LostFocus" />

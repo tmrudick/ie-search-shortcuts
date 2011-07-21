@@ -14,6 +14,21 @@ namespace IESearchShortcuts
         public string Name { get; set; }
         public string Keyword { get; set; }
         public string URL { get; set; }
+        public string Icon
+        {
+            get
+            {
+                try
+                {
+                    Uri searchUri = new Uri(this.URL);
+                    return "http://" + searchUri.Host + "/favicon.ico";
+                }
+                catch (UriFormatException e)
+                {
+                    return "";
+                }
+            }
+        }
         private string CurrentKeyword; // If the shortcut is not new, this is the existing key
 
         Shortcut(string name, string keyword, string url)
